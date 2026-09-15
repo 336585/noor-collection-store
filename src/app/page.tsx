@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import ProductCard from "@/components/ProductCard";
+import HotSellings from "@/components/HotSellings";
+import CollectionsGrid from "@/components/CollectionsGrid";
+import TrustBadges from "@/components/TrustBadges";
+import Testimonials from "@/components/Testimonials";
 import { products } from "@/lib/products";
 
 export default function Home() {
-  const featured = products.slice(0, 4);
+  const partyDresses = products.filter((p) => p.category === "Party Dresses");
 
   return (
     <div className="flex flex-col">
@@ -18,8 +21,9 @@ export default function Home() {
               Women&apos;s Party Dresses
             </h1>
             <p className="text-zinc-300 mb-6 max-w-sm">
-              Curated party, wedding and kids wear — shipped across Bahrain.
-              Pay easily with BenefitPay.
+              Our party dresses are perfect fashion items for a stylish and
+              trendy look — shipped across Bahrain. Pay easily with
+              BenefitPay.
             </p>
             <Link
               href="/products"
@@ -41,14 +45,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto w-full px-6 py-12">
-        <h2 className="text-2xl font-serif mb-6">Featured</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-          {featured.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-      </section>
+      <HotSellings products={partyDresses} />
+      <CollectionsGrid />
+      <TrustBadges />
+      <Testimonials />
     </div>
   );
 }
